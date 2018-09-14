@@ -1,0 +1,89 @@
+server:
+  port: 9888
+
+spring:
+  application:
+    name: credit-config
+  profiles:
+    active: test
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/qinhaohao1114/credit-config-file.git
+          username: qinhaohao1114
+          password: qhh18260639556
+#          default-label: ${spring.profiles.active}
+          search-paths: '{application}'
+
+# 关闭安全管理
+#management:
+#  security:
+#    enabled: false
+#endpoints:
+#  health:
+#    sensitive: false
+---
+spring:
+  profiles: dev
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 9
+    #服务刷新时间配置，每隔这个时间会主动心跳一次
+    #默认30s
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.40.63:8888/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+---
+spring:
+  profiles: test
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 9
+    #服务刷新时间配置，每隔这个时间会主动心跳一次
+    #默认30s
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://192.168.40.63:8888/eureka/
+---
+spring:
+  profiles: uat
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 9
+    #服务刷新时间配置，每隔这个时间会主动心跳一次
+    #默认30s
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://192.168.204.170:8888/eureka/
+---
+spring:
+  profiles: prod
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 9
+    #服务刷新时间配置，每隔这个时间会主动心跳一次
+    #默认30s
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://192.168.204.105:8888/eureka/
