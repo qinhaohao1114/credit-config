@@ -10,7 +10,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/qinhaohao1114/credit-config-file.git
+          uri: https://github.com/qinhaohao1114/credit-config.git
           username: qinhaohao1114
           password: qhh18260639556
 #          default-label: ${spring.profiles.active}
