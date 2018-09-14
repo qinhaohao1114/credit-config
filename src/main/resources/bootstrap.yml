@@ -14,7 +14,7 @@ spring:
           username: qinhaohao1114
           password: qhh18260639556
 #          default-label: ${spring.profiles.active}
-          search-paths: '{application}'
+          search-paths: 'src/main/resources/{application}'
 
 # 关闭安全管理
 #management:
